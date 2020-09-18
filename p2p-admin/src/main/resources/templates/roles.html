@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta charset="utf-8">
+		<title>Tables - Ace Admin</title>
+
+		<meta name="description" content="Static &amp; Dynamic Tables">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" th:href="@{|/assets/css/bootstrap.min.css|}">
+		<link rel="stylesheet" th:href="@{|/assets/font-awesome/4.5.0/css/font-awesome.min.css|}">
+
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" th:href="@{|/assets/css/fonts.googleapis.com.css|}">
+
+		<!-- ace styles -->
+		<link rel="stylesheet" th:href="@{|/assets/css/ace.min.css|}" class="ace-main-stylesheet" id="main-ace-style">
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" th:href="@{|/assets/css/ace-part2.min.css|}" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" th:href="@{|/assets/css/ace-skins.min.css|}">
+		<link rel="stylesheet" th:href="@{|/assets/css/ace-rtl.min.css|}">
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" th:href="@{|/assets/css/ace-ie.min.css|}" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script th:src="@{|/assets/js/ace-extra.min.js|}"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script th:src="@{|/assets/js/html5shiv.min.js|}"></script>
+		<script th:src="@{|/assets/js/respond.min.js|}"></script>
+		<![endif]-->
+	</head>
+
+	<body class="no-skin">
+		<div class="main-container ace-save-state" id="main-container">
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="row">
+									<div class="col-xs-12">
+										<table id="simple-table" class="table  table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="center">
+														<label class="pos-rel">
+															<input type="checkbox" class="ace" />
+															<span class="lbl"></span>
+														</label>
+													</th>
+													<th>角色名称</th>
+													<th>是否可用</th>
+													<th class="hidden-480">权限操作</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr th:each="role:${roleList}">
+													<td class="center">
+														<label class="pos-rel">
+															<input type="checkbox" class="ace" th:value="${role.id}"/>
+															<span class="lbl"></span>
+														</label>
+													</td>
+													<td th:text="${role.name}">$45</td>
+													<td th:text="${role.available==1?'可用':'不可用'}">3,330</td>
+													<td class="hidden-480">
+														<div class="hidden-sm hidden-xs btn-group">
+															<button class="btn btn-xs btn-success">
+																<i class="ace-icon fa fa-check bigger-120"></i>
+															</button>
+
+															<button class="btn btn-xs btn-info">
+																<i class="ace-icon fa fa-pencil bigger-120"></i>
+															</button>
+
+															<button class="btn btn-xs btn-danger">
+																<i class="ace-icon fa fa-trash-o bigger-120"></i>
+															</button>
+
+															<button class="btn btn-xs btn-warning disPermis" th:attr="roleId=${role.id}">
+																<i class="ace-icon fa fa-flag bigger-120"></i>
+																分配权限
+															</button>
+														</div>
+
+														<div class="hidden-md hidden-lg">
+															<div class="inline pos-rel">
+																<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+																	<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+																</button>
+
+																<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+																	<li>
+																		<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+																			<span class="blue">
+																				<i class="ace-icon fa fa-search-plus bigger-120"></i>
+																			</span>
+																		</a>
+																	</li>
+
+																	<li>
+																		<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+																			<span class="green">
+																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																			</span>
+																		</a>
+																	</li>
+
+																	<li>
+																		<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																			<span class="red">
+																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																			</span>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div><!-- /.span -->
+								</div><!-- /.row -->
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script th:src="@{|/assets/js/jquery-2.1.4.min.js|}"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script th:src="@{|/assets/js/jquery-1.11.3.min.js|}"></script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script th:src="@{|/assets/js/bootstrap.min.js|}"></script>
+
+		<!-- page specific plugin scripts -->
+		<script th:src="@{|/assets/js/jquery.dataTables.min.js|}"></script>
+		<script th:src="@{|/assets/js/jquery.dataTables.bootstrap.min.js|}"></script>
+		<script th:src="@{|/assets/js/dataTables.buttons.min.js|}"></script>
+		<script th:src="@{|/assets/js/buttons.flash.min.js|}"></script>
+		<script th:src="@{|/assets/js/buttons.html5.min.js|}"></script>
+		<script th:src="@{|/assets/js/buttons.print.min.js|}"></script>
+		<script th:src="@{|/assets/js/buttons.colVis.min.js|}"></script>
+		<script th:src="@{|/assets/js/dataTables.select.min.js|}"></script>
+
+		<!-- ace scripts -->
+		<script th:src="@{|/assets/js/ace-elements.min.js|}"></script>
+		<script th:src="@{|/assets/js/ace.min.js|}"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			$(function () {
+				$(".disPermis").bind("click",function () {
+					window.location.href="/admin/toDisPermis?roleId="+$(this).attr("roleId");
+				});
+			})
+		</script>
+	</body>
+</html>

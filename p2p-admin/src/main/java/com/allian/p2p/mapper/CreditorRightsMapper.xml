@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allian.p2p.mapper.CreditorRightsMapper">
+  <resultMap id="BaseResultMap" type="com.allian.p2p.model.CreditorRights">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="apply_no" jdbcType="VARCHAR" property="applyNo" />
+    <result column="into_source" jdbcType="INTEGER" property="intoSource" />
+    <result column="apply_product" jdbcType="INTEGER" property="applyProduct" />
+    <result column="apply_money" jdbcType="DOUBLE" property="applyMoney" />
+    <result column="apply_term" jdbcType="INTEGER" property="applyTerm" />
+    <result column="apply_purpose" jdbcType="VARCHAR" property="applyPurpose" />
+    <result column="borrower_realname" jdbcType="VARCHAR" property="borrowerRealname" />
+    <result column="borrower_idcard" jdbcType="VARCHAR" property="borrowerIdcard" />
+    <result column="borrower_sex" jdbcType="INTEGER" property="borrowerSex" />
+    <result column="borrower_age" jdbcType="INTEGER" property="borrowerAge" />
+    <result column="borrower_education" jdbcType="INTEGER" property="borrowerEducation" />
+    <result column="borrower_marital" jdbcType="INTEGER" property="borrowerMarital" />
+    <result column="borrower_city" jdbcType="INTEGER" property="borrowerCity" />
+    <result column="borrower_present_address" jdbcType="VARCHAR" property="borrowerPresentAddress" />
+    <result column="borrower_bank_account" jdbcType="VARCHAR" property="borrowerBankAccount" />
+    <result column="borrower_open_bank" jdbcType="VARCHAR" property="borrowerOpenBank" />
+    <result column="borrower_house_count" jdbcType="INTEGER" property="borrowerHouseCount" />
+    <result column="borrower_car_count" jdbcType="INTEGER" property="borrowerCarCount" />
+    <result column="borrower_work" jdbcType="VARCHAR" property="borrowerWork" />
+    <result column="borrower_company_name" jdbcType="VARCHAR" property="borrowerCompanyName" />
+    <result column="borrower_company_address" jdbcType="VARCHAR" property="borrowerCompanyAddress" />
+    <result column="borrower_work_year" jdbcType="INTEGER" property="borrowerWorkYear" />
+    <result column="borrower_month_salary" jdbcType="DOUBLE" property="borrowerMonthSalary" />
+    <result column="borrower_credit_report_certification" jdbcType="INTEGER" property="borrowerCreditReportCertification" />
+    <result column="borrower_credit_report_certification_time" jdbcType="TIMESTAMP" property="borrowerCreditReportCertificationTime" />
+    <result column="borrower_idcard_certification" jdbcType="INTEGER" property="borrowerIdcardCertification" />
+    <result column="borrower_idcard_certification_time" jdbcType="TIMESTAMP" property="borrowerIdcardCertificationTime" />
+    <result column="borrower_work_certification" jdbcType="INTEGER" property="borrowerWorkCertification" />
+    <result column="borrower_work_certification_time" jdbcType="TIMESTAMP" property="borrowerWorkCertificationTime" />
+    <result column="borrower_income_certification" jdbcType="INTEGER" property="borrowerIncomeCertification" />
+    <result column="borrower_income_certification_time" jdbcType="TIMESTAMP" property="borrowerIncomeCertificationTime" />
+    <result column="borrower_house_certification" jdbcType="INTEGER" property="borrowerHouseCertification" />
+    <result column="borrower_house_certification_time" jdbcType="TIMESTAMP" property="borrowerHouseCertificationTime" />
+    <result column="borrower_field_certification" jdbcType="INTEGER" property="borrowerFieldCertification" />
+    <result column="borrower_field_certification_time" jdbcType="TIMESTAMP" property="borrowerFieldCertificationTime" />
+    <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="audit_loan_term" jdbcType="INTEGER" property="auditLoanTerm" />
+    <result column="audit_loan_money" jdbcType="DOUBLE" property="auditLoanMoney" />
+    <result column="contract_loan_money" jdbcType="DOUBLE" property="contractLoanMoney" />
+    <result column="consulting_fee" jdbcType="DOUBLE" property="consultingFee" />
+    <result column="audit_fee" jdbcType="DOUBLE" property="auditFee" />
+    <result column="service_fee" jdbcType="DOUBLE" property="serviceFee" />
+    <result column="access_fee" jdbcType="DOUBLE" property="accessFee" />
+    <result column="year_rate" jdbcType="DOUBLE" property="yearRate" />
+    <result column="put_money" jdbcType="DOUBLE" property="putMoney" />
+    <result column="creditor_rights_type" jdbcType="INTEGER" property="creditorRightsType" />
+    <result column="match_status" jdbcType="INTEGER" property="matchStatus" />
+    <result column="collect_status" jdbcType="INTEGER" property="collectStatus" />
+    <result column="collect_finish_time" jdbcType="TIMESTAMP" property="collectFinishTime" />
+    <result column="match_finish_time" jdbcType="TIMESTAMP" property="matchFinishTime" />
+    <result column="loan_contract_path" jdbcType="VARCHAR" property="loanContractPath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, apply_no, into_source, apply_product, apply_money, apply_term, apply_purpose, 
+    borrower_realname, borrower_idcard, borrower_sex, borrower_age, borrower_education, 
+    borrower_marital, borrower_city, borrower_present_address, borrower_bank_account, 
+    borrower_open_bank, borrower_house_count, borrower_car_count, borrower_work, borrower_company_name, 
+    borrower_company_address, borrower_work_year, borrower_month_salary, borrower_credit_report_certification, 
+    borrower_credit_report_certification_time, borrower_idcard_certification, borrower_idcard_certification_time, 
+    borrower_work_certification, borrower_work_certification_time, borrower_income_certification, 
+    borrower_income_certification_time, borrower_house_certification, borrower_house_certification_time, 
+    borrower_field_certification, borrower_field_certification_time, audit_status, audit_time, 
+    audit_loan_term, audit_loan_money, contract_loan_money, consulting_fee, audit_fee, 
+    service_fee, access_fee, year_rate, put_money, creditor_rights_type, match_status, 
+    collect_status, collect_finish_time, match_finish_time, loan_contract_path
+  </sql>
+
+  <select id="getContractAll" resultType="map">
+    SELECT
+	cr.id,
+	borrower_realname,
+	apply_no,
+	apply_money,
+	apply_purpose,
+	apply_term,
+	product_name,
+	loan_contract_path
+FROM
+	b_creditor_rights cr
+JOIN p2p2.b_loan_info li ON cr.apply_product = li.id
+    where
+      cr.collect_status=#{collectStatus} and cr.match_status=#{matchStatus}
+  </select>
+</mapper>

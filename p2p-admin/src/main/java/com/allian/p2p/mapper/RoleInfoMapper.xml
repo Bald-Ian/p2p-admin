@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allian.p2p.mapper.RoleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.allian.p2p.model.RoleInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, available
+  </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select *
+    from u_role_info
+  </select>
+
+  <select id="selectPermissionByRoleId" resultType="map">
+    SELECT
+        pi.id id,pi.parent_id pId,pi.name name,ri.available checked
+    FROM
+        u_role_info ri
+    JOIN u_role_permission rp
+    ON ri.id = rp.role_id
+    right JOIN u_permission_info pi
+    ON rp.permission_id = pi.id
+    AND
+     ri.id=#{roleId}
+  </select>
+
+  <delete id="deleteAllPermissionByRoleId">
+    delete from u_role_permission
+    where role_id = #{roleId}
+  </delete>
+
+  <insert id="addPermission">
+    insert into u_role_permission(role_id,permission_id)
+    values (#{roleId},#{permissionId})
+  </insert>
+
+  <select id="getRoleSelectDataByUserId" resultType="map">
+    select ri.id id, name, user_id
+    from u_role_info ri
+    left JOIN u_user_role  ur ON ri.id=ur.role_id
+    AND ur.user_id = #{userId}
+  </select>
+
+  <delete id="deleteRoleByUserId">
+    delete from u_user_role
+    where user_id = #{userId}
+  </delete>
+
+  <insert id="addRole">
+    insert into u_user_role(user_id,role_id)
+    values (#{userId},#{roleId})
+  </insert>
+</mapper>
